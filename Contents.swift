@@ -11,7 +11,7 @@ let arr = [1, 2, 3]
 let dic = [1 : "first", 2: "second"]
 
 for i in arr where dic[i] != nil {
-    print(i)
+    print("Dic has \(i).")
 }
 
 //switch
@@ -29,4 +29,30 @@ var value: (String, Int) = ("Sam", 30)
 ifExamPass(value: value)
 value = ("Hero", 70)
 ifExamPass(value: value)
+
+//do catch
+
+enum NetworkError: Error {
+    case parseError
+    
+    case URLFormFail
+    
+    case dataTaskError(Int)
+}
+
+func throwServerError() throws {
+    throw NetworkError.dataTaskError(502)
+}
+
+do {
+    
+    try throwServerError()
+    
+} catch NetworkError.dataTaskError(let httpCode) where httpCode >= 500 {
+    
+    print("Network error:\(httpCode)")
+    
+}
+
+
 
