@@ -54,5 +54,21 @@ do {
     
 }
 
+//protocol
+import UIKit
+
+protocol Aprotocol: class {
+    func a()
+}
+
+extension Aprotocol where Self: UIView {
+    func a() {
+        print("Execute default method a")
+    }
+}
+
+class aView: UIView, Aprotocol {}
+let aview = aView()
+aview.a()
 
 
