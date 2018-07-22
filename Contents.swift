@@ -55,6 +55,7 @@ do {
 }
 
 //protocol
+
 import UIKit
 
 protocol Aprotocol: class {
@@ -71,4 +72,16 @@ class aView: UIView, Aprotocol {}
 let aview = aView()
 aview.a()
 
+//generic
+
+func genericMethod<I>(instance: I) where I: Aprotocol {
+    print("This instance conforms Aprotocol.")
+}
+
+func genericDifferentSyntaxMethod<I: Aprotocol>(instance: I) {
+    print("This instance conforms Aprotocol.")
+}
+
+genericMethod(instance: aview)
+genericDifferentSyntaxMethod(instance: aview)
 
